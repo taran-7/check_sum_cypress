@@ -1,0 +1,11 @@
+ // check summ
+
+        cy.get('[class="my-auto"]').then($span => {
+            const creditBefor = parseFloat($span.text())
+            cy.wait('@getCredit')
+            cy.get('[class="my-auto"]', { timeout: 12000 })
+                .then(() => {
+                    const creditAfter = parseFloat($span.text())
+                    expect(creditAfter).to.eq(creditBefor + randomCredit)
+                })
+        })
